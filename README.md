@@ -51,26 +51,26 @@ A beautiful, responsive payroll calendar website for Hoskbrew employees to track
 
 _Clean, professional appearance with soft grays and whites_
 
-- Light gray header background
-- White month navigation bar
-- Clean card layouts with subtle shadows
-- Green and yellow accent colors
+![Light Theme Desktop](screenshots/light-desktop.png)
+_Desktop View_
+
+<img src="screenshots/light-mobile.png" width="375" alt="Light Theme Mobile">
+*Mobile View*
 
 ### Dark Theme
 
 _Easy on the eyes with deep navy backgrounds_
 
-- Dark navy header (#0f172a)
-- Dark navigation bar (#1e293b)
-- High contrast text for readability
-- Same accent colors, adapted for dark mode
+![Dark Theme Desktop](screenshots/dark-desktop.png)
+_Desktop View_
+
+<img src="screenshots/dark-mobile.png" width="375" alt="Dark Theme Mobile">
+*Mobile View*
 
 ### Feature Highlights
 
-- **Today Highlight**: Red pulsing border on current date
-- **Payday Markers**: Golden yellow background on paydays
-- **Holiday Indicators**: Red text with dot indicator
-- **Pay Period Colors**: Alternating green shades (A/B periods)
+![Feature Overview](screenshots/feature-overview.png)
+_Today Highlight & Payday Markers_
 
 ---
 
