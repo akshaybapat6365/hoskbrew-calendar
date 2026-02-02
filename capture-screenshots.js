@@ -29,7 +29,7 @@ async function captureScreenshots() {
   try {
     console.log("Capturing desktop light theme...");
     const desktopContext = await browser.newContext({
-      viewport: { width: 1920, height: 1080 },
+      viewport: { width: 1440, height: 900 },
       deviceScaleFactor: 2,
     });
     const desktopPage = await desktopContext.newPage();
@@ -44,7 +44,7 @@ async function captureScreenshots() {
 
     console.log("Capturing desktop dark theme...");
     const desktopDarkContext = await browser.newContext({
-      viewport: { width: 1920, height: 1080 },
+      viewport: { width: 1440, height: 900 },
       deviceScaleFactor: 2,
     });
     const desktopDarkPage = await desktopDarkContext.newPage();
@@ -59,9 +59,12 @@ async function captureScreenshots() {
     console.log("✓ dark-desktop.png captured");
     await desktopDarkContext.close();
 
+    const MOBILE_WIDTH = 393;
+    const MOBILE_HEIGHT = 852;
+
     console.log("Capturing mobile light theme...");
     const mobileContext = await browser.newContext({
-      viewport: { width: 393, height: 852 },
+      viewport: { width: MOBILE_WIDTH, height: MOBILE_HEIGHT },
       deviceScaleFactor: 3,
       isMobile: true,
       hasTouch: true,
@@ -73,14 +76,14 @@ async function captureScreenshots() {
     await preparePage(mobilePage);
     await mobilePage.screenshot({
       path: path.join(OUTPUT_DIR, "light-mobile.png"),
-      fullPage: false,
+      clip: { x: 0, y: 0, width: MOBILE_WIDTH, height: MOBILE_HEIGHT },
     });
-    console.log("✓ light-mobile.png captured");
+    console.log("✓ light-mobile.png captured (Cropped)");
     await mobileContext.close();
 
     console.log("Capturing mobile dark theme...");
     const mobileDarkContext = await browser.newContext({
-      viewport: { width: 393, height: 852 },
+      viewport: { width: MOBILE_WIDTH, height: MOBILE_HEIGHT },
       deviceScaleFactor: 3,
       isMobile: true,
       hasTouch: true,
@@ -94,20 +97,20 @@ async function captureScreenshots() {
     await mobileDarkPage.waitForTimeout(500);
     await mobileDarkPage.screenshot({
       path: path.join(OUTPUT_DIR, "dark-mobile.png"),
-      fullPage: false,
+      clip: { x: 0, y: 0, width: MOBILE_WIDTH, height: MOBILE_HEIGHT },
     });
-    console.log("✓ dark-mobile.png captured");
+    console.log("✓ dark-mobile.png captured (Cropped)");
     await mobileDarkContext.close();
 
     console.log("Capturing feature highlights...");
     const featureContext = await browser.newContext({
-      viewport: { width: 1200, height: 800 },
+      viewport: { width: 1200, height: 600 },
       deviceScaleFactor: 2,
     });
     const featurePage = await featureContext.newPage();
     await featurePage.goto(URL, { waitUntil: "networkidle" });
     await preparePage(featurePage);
-    await featurePage.evaluate(() => window.scrollTo(0, 500));
+    await featurePage.evaluate(() => window.scrollTo(0, 400));
     await featurePage.waitForTimeout(500);
     await featurePage.screenshot({
       path: path.join(OUTPUT_DIR, "feature-overview.png"),
