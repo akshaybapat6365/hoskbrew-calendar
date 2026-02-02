@@ -37,24 +37,24 @@
         }
 
         [data-theme="dark"] {
-            --bg-primary: #0f172a;
-            --bg-secondary: #1e293b;
-            --bg-tertiary: #334155;
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --text-tertiary: #64748b;
-            --border-color: #475569;
-            --card-bg: #1e293b;
-            --card-header: #252f47;
-            --nav-bg: #1e293b;
-            --nav-border: #334155;
-            --header-bg: linear-gradient(135deg, #020617 0%, #0f172a 100%);
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
-            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.6);
-            --period-a: #312e81; /* Indigo for A */
-            --period-b: #064e3b; /* Emerald for B */
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-tertiary: #141414;
+            --text-primary: #ffffff;
+            --text-secondary: #a3a3a3;
+            --text-tertiary: #737373;
+            --border-color: #333333;
+            --card-bg: #0a0a0a;
+            --card-header: #141414;
+            --nav-bg: #000000;
+            --nav-border: #333333;
+            --header-bg: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            --period-a: #1c1c1c; /* Charcoal for A - Neutral Dark */
+            --period-b: #064e3b; /* Brand Green for B - Consistent */
         }
 
         * {
@@ -129,6 +129,7 @@
             border-radius: 50%;
             border: 1px solid var(--border-color);
             background: var(--card-bg);
+            backdrop-filter: blur(10px); /* Glassmorphism for overlap */
             box-shadow: var(--shadow-lg);
             cursor: pointer;
             display: flex;
@@ -141,9 +142,18 @@
         @media (max-width: 768px) {
             .theme-toggle {
                 top: auto;
-                bottom: 24px;
-                right: 24px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                bottom: 32px; /* Higher up to avoid safe area/footer clash */
+                right: 20px;
+                background: rgba(255, 255, 255, 0.1); /* Transparent glass on mobile */
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                color: var(--text-primary);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            }
+            
+            [data-theme="light"] .theme-toggle {
+                background: rgba(255, 255, 255, 0.8);
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                color: #0f172a;
             }
         }
 
@@ -315,9 +325,9 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        html        [data-theme="dark"] .month-nav {
-            background: #1e293b !important;
-            border-bottom-color: #334155 !important;
+        html[data-theme="dark"] .month-nav {
+            background: #000000 !important;
+            border-bottom-color: #333333 !important;
         }
 
         [data-theme="dark"] .brand-name {
@@ -741,7 +751,7 @@
             if (next === 'light') {
                 monthNav.style.cssText = 'background: #ffffff !important; border-bottom: 1px solid #e2e8f0 !important;';
             } else {
-                monthNav.style.cssText = 'background: #1e293b !important; border-bottom: 1px solid #334155 !important;';
+                monthNav.style.cssText = 'background: #000000 !important; border-bottom: 1px solid #333333 !important;';
             }
             localStorage.setItem('theme', next);
         }
@@ -755,7 +765,7 @@
         if (saved === 'light') {
             monthNav.style.cssText = 'background: #ffffff !important; border-bottom: 1px solid #e2e8f0 !important;';
         } else {
-            monthNav.style.cssText = 'background: #1e293b !important; border-bottom: 1px solid #334155 !important;';
+            monthNav.style.cssText = 'background: #000000 !important; border-bottom: 1px solid #333333 !important;';
         }
 
         function updateCountdown() {
